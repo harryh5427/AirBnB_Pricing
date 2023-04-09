@@ -22,23 +22,23 @@ if sys.argv[1] == 'elasticnet':
         ('scaler', StandardScaler()),\
         ('model', ElasticNet())
     ])
-    params = {'model__alpha': 10.**np.arange(-3, 4),\
+    params = {'model__alpha': 10.**np.arange(-5, 1),\
             'model__l1_ratio': np.linspace(0., 1., 6),\
             'model__max_iter': [8000]}
     save_name = 'enet.joblib'
 elif sys.argv[1] == 'randomforest':
     pipe = Pipeline(steps =[\
-    ('model', RandomForestRegressor())
+        ('model', RandomForestRegressor())
     ])
-    params = {'model__n_estimators': np.arange(500, 1100, 100),
-              'model__max_depth': np.arange(500, 1100, 100)}
+    params = {'model__n_estimators': np.arange(1000, 1600, 100),
+              'model__max_depth': np.arange(600, 1200, 100)}
     save_name = 'rfr.joblib'
 elif sys.argv[1] == 'xgboost':
     pipe = Pipeline(steps =[\
         ('model', XGBRegressor())
     ])
-    params = {'model__n_estimators': np.arange(300, 650, 50),\
-            'model__max_depth': np.arange(6, 10),
+    params = {'model__n_estimators': np.arange(400, 750, 50),\
+            'model__max_depth': np.arange(5, 10),
             'model__learning_rate': [0.1]}
     save_name = 'xgb.joblib'
 
